@@ -1,6 +1,9 @@
-class Scooter{
-  // scooter code here
+//const ScooterApp = require("./ScooterApp");
+class Scooter {
+  constructor() {
+    //this.station = ScooterApp.getRandomStation();
+    //console.log(this.station);
+  }
 }
 
-
-module.exports = Scooter
+module.exports = Scooter;
