@@ -6,10 +6,11 @@ class ScooterApp {
   registeredUsers = {};
 
   registerUser(username, password, age) {
-    if (!Object.keys().includes(username) && age >= 18) {
-      this.registeredUsers[username] = new User(username, password, age);
+    if (!this.registeredUsers[username] && age >= 18) {
       console.log(`${this.username} has been registered`);
-    } else if (Object.keys().includes(username)) {
+      this.registeredUsers[username] = new User(username, password, age);
+      return this.registeredUsers[username];
+    } else if (this.registeredUsers[username]) {
       throw new Error("already registered");
     } else {
       throw new Error("too young to register");
