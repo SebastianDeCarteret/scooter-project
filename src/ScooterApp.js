@@ -18,33 +18,32 @@ class ScooterApp {
   }
 
   loginUser(username, password) {
-    if (Object.keys().includes(username)) {
-      Object.values()
-        .at(Object.keys(this.registeredUsers).indexOf(username))
-        .login(password);
+    if (this.registeredUsers[username]) {
+      this.registeredUsers[username].login(password);
+      console.log("user has been logged in");
     } else {
       throw new Error("Username or password is incorrect");
     }
   }
 
   logoutUser(username) {
-    if (Object.keys().includes(username)) {
-      Object.values()
-        .at(Object.keys(this.registeredUsers).indexOf(username))
-        .logout();
+    if (this.registeredUsers[username]) {
+      this.registeredUsers[username].logout();
     } else {
       throw new Error("No such user is logged in");
     }
   }
 
   createScooter(station) {
-    if (Object.keys().includes(station)) {
+    if (this.stations[station]) {
       console.log("created new scooter");
-      return Object.keys(this.stations)[station].push(new Scooter(station));
+      let index = this.stations[station].push(new Scooter(station)) - 1; // push returns length of [], then -1 to get index
+      return this.stations[station][index];
     } else {
-      throw new Error("no such station");
+      throw new Error("No such station");
     }
   }
+
   // static getRandomStation() {
   //   console.log(Object.keys(this.stations)[1]);
   //   return Object.keys(this.stations)[0];

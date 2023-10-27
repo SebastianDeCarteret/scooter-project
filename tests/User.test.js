@@ -20,25 +20,23 @@ describe("User", () => {
     });
   });
   describe("user method tests", () => {
-    test("login should update boolean", () => {
-      user.login("test123");
-      expect(user.loggedIn).toBe(true);
+    describe("login() method:", () => {
+      it("login should update boolean", () => {
+        user.login("test123");
+        expect(user.loggedIn).toBe(true);
+      });
+      it("login should throw error if incorrect password", () => {
+        expect(() => {
+          user.login("tes");
+        }).toThrow(new Error("incorrect password"));
+      });
     });
-    test("login should throw error if incorrect password", () => {
-      expect(() => {
-        user.login("tes");
-      }).toThrow(new Error("incorrect password"));
-    });
-    test("logout updates boolean", () => {
-      user.logout();
-      expect(user.loggedIn).toBe(false);
+
+    describe("logout() method:", () => {
+      it("should logout updates boolean", () => {
+        user.logout();
+        expect(user.loggedIn).toBe(false);
+      });
     });
   });
 });
-// test password
-
-// test age
-
-// test login
-
-// test logout
